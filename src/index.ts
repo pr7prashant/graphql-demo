@@ -10,8 +10,11 @@ import _db from "./_db.js";
 const resolvers = {
   Query: {
     games: () => _db.games,
+    game: (_, { id }) => _db.games.find((g) => g.id === id),
     authors: () => _db.authors,
+    author: (_, { id }) => _db.authors.find((a) => a.id === id),
     reviews: () => _db.reviews,
+    review: (_, { id }) => _db.reviews.find((r) => r.id === id),
   },
 };
 
