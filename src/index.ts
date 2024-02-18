@@ -10,11 +10,20 @@ import _db from "./_db.js";
 const resolvers = {
   Query: {
     games: () => _db.games,
-    game: (_, { id }) => _db.games.find((g) => g.id === id),
+    game: (_, args) => _db.games.find((g) => g.id === args.id),
     authors: () => _db.authors,
-    author: (_, { id }) => _db.authors.find((a) => a.id === id),
+    author: (_, args) => _db.authors.find((a) => a.id === args.id),
     reviews: () => _db.reviews,
-    review: (_, { id }) => _db.reviews.find((r) => r.id === id),
+    review: (_, args) => _db.reviews.find((r) => r.id === args.id),
+  },
+  Game: {
+    reviews: (parent) => _db.reviews.filter((r) => r.game_id === parent.id),
+  },
+  Mutation: {
+    deleteGame: (_, args) => {
+      _db.games = _db.games.filter((g) => g.id !== args.id);
+      return _db.games;
+    },
   },
 };
 
