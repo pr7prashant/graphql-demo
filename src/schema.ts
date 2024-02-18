@@ -23,7 +23,7 @@ const typeDefs = `#graphql
   type Query {
     reviews: [Review]!
     games: [Game]!
-    author: [Author]!
+    authors: [Author]!
   }
 `;
 
